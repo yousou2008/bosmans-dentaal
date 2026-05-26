@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kroon- en Brugwerk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:72px}
+    body{font-family:'Inter',sans-serif;color:#111;background:#fff;line-height:1.65;overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none}
+    .container{width:100%;max-width:1120px;margin:0 auto;padding:0 24px}
+    .section-label{display:inline-block;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#81aa00;margin-bottom:1rem}
+    h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.03;margin-bottom:1rem;color:#111}
+    p{font-size:1rem;color:#444;margin-bottom:1.4rem;max-width:760px}
+    .over-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:120px 0 60px}
+    .over-img-wrap{position:relative}
+    .over-img{width:100%;aspect-ratio:4/3;border-radius:28px;object-fit:cover;box-shadow:0 30px 90px rgba(17,17,17,.08);background:#f0f0ee}
+    .over-text{padding-top:0}
+    .info-list{display:grid;gap:1rem;margin-top:1.6rem}
+    .info-list li{background:#f7f7f5;border:1px solid #e6e6e4;border-radius:18px;padding:1rem 1.25rem;display:grid;gap:.65rem}
+    .info-list li strong{display:block;font-size:.98rem;color:#111;font-weight:700}
+    .info-list li span{display:block;font-size:.95rem;color:#555}
+    .info-list li ul{display:grid;gap:.55rem;padding-left:1rem;margin-top:.5rem}
+    .info-list li ul li{position:relative;padding-left:1.2rem;font-size:.92rem;color:#555}
+    .info-list li ul li::before{content:'•';position:absolute;left:0;top:0;color:#81aa00;font-size:1rem;line-height:1}
+    #nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;background:transparent;border-bottom:1px solid transparent;transition:background .35s ease,box-shadow .35s ease,padding .35s ease,border-color .35s ease}
+    #nav.scrolled{background:rgba(255,255,255,.90);backdrop-filter:blur(24px) saturate(200%);-webkit-backdrop-filter:blur(24px) saturate(200%);box-shadow:0 1px 24px rgba(0,0,0,.08);border-bottom:1px solid rgba(255,255,255,.7);padding:12px 0}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-size:1.15rem;font-weight:800;letter-spacing:.02em;color:#111;line-height:1;transition:color .35s ease}
+    #nav.scrolled .nav-logo{color:#111}
+    .nav-links{display:flex;align-items:center;gap:2rem;line-height:1;flex-wrap:nowrap;white-space:nowrap}
+    .nav-links li{display:flex;align-items:center;flex-shrink:0}
+    .nav-links a{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:rgba(0,0,0,.6);transition:color .25s;font-family:'Inter',sans-serif;display:flex;align-items:center;line-height:1;white-space:nowrap}
+    .nav-links a:hover{color:#111}
+    .nav-cta{font-size:.78rem !important;padding:.65rem 1.4rem !important;border-radius:50px;line-height:1 !important;background:#81aa00;color:#fff}
+    .hamburger{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer;background:none;border:none}
+    .hamburger span{display:block;width:24px;height:2px;background:#111;border-radius:2px;transition:transform .3s,opacity .3s,background .35s ease}
+    #nav.scrolled .hamburger span{background:#111}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{position:fixed;inset:0;z-index:999;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s}
+    .mobile-menu.open{display:flex;opacity:1;pointer-events:all}
+    .mobile-menu a{font-size:1.3rem;font-weight:700;color:#111;transition:color .25s}
+    .mobile-menu a:hover{color:#81aa00}
+    @media (max-width:900px){.over-grid{grid-template-columns:1fr;gap:2rem}.over-img{aspect-ratio:3/2}.nav-links{display:none}.hamburger{display:flex}}
+  </style>
+</head>
+<body>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMobile()">Home</a>
+    <a href="Herstellingen.html" onclick="closeMobile()">Herstellingen</a>
+    <a href="kronen.html" onclick="closeMobile()">Kronen</a>
+    <a href="Orthodontie.html" onclick="closeMobile()">Orthodontie</a>
+    <a href="Protheses.html" onclick="closeMobile()">Protheses</a>
+  </div>
+  <nav id="nav" class="scrolled">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="data:image/png;base64,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 ... truncated for brevity ... " alt="Bosmans Dentaal logo" style="width:36px;height:36px;object-fit:contain;">
+          BOSMANS DENTAAL
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Herstellingen.html">Herstellingen</a></li>
+          <li><a href="kronen.html">Kronen</a></li>
+          <li><a href="Orthodontie.html">Orthodontie</a></li>
+          <li><a href="Protheses.html">Protheses</a></li>
+          <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <main class="container">
+    <section class="over-grid">
+      <div class="over-img-wrap">
+        <img class="over-img" src="kronen.jpg" alt="Kroon- en brugwerk" />
+      </div>
+      <div class="over-text">
+        <span class="section-label">Kroon- en Brugwerk</span>
+        <h1>Esthetische tandrestauraties met precisie</h1>
+        <p>In onze afdeling kroon- en brugwerk vervaardigen wij duurzame en esthetisch hoogwaardige keramische tandrestauraties. Daarbij ligt de focus op een perfecte kleur- en vormafstemming zodat het aansluit bij het natuurlijke gebit.</p>
+        <ul class="info-list">
+          <li>
+            <strong>Kronen en bruggen</strong>
+            <span>Het maken van keramische kronen en bruggen die qua kleur en vorm perfect aansluiten bij het natuurlijke gebit.</span>
+          </li>
+          <li>
+            <strong>Facings</strong>
+            <span>Dunne porseleinen schildjes die op de tanden worden geplaatst voor een esthetische verbetering.</span>
+          </li>
+          <li>
+            <strong>Inlays en onlays</strong>
+            <span>Keramische vullingen als alternatief voor composiet of amalgaam.</span>
+          </li>
+          <li>
+            <strong>Implantaatwerken</strong>
+            <span>Kronen of bruggen die op implantaten worden geplaatst voor een duurzame vervanging van tanden.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    function toggleMobile() {
+      const menu = document.getElementById('mobileMenu');
+      const ham = document.getElementById('hamburger');
+      const open = !menu.classList.contains('open');
+      menu.classList.toggle('open', open);
+      ham.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobile() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  </script>
+</body>
+</html>
